@@ -81,7 +81,7 @@ public class LeetCode002 {
                     key.next = new ListNode(1);
                 } else {
                     key.val = p.val + q.val + key.val;
-                    if(null != p || null != q ){
+                    if(null != p.next || null != q.next ){
                         key.next = new ListNode(0);
                     }
                 }
@@ -90,12 +90,14 @@ public class LeetCode002 {
                 key = key.next;
             } else {
                 if(null != p){
-                    key.next = p.next;
-                    key.val += p.val;
+                    ListNode result = this.addTwoNumbers(key,p);
+                    key.val = result.val;
+                    key.next = result.next;
                     p = null;
                 } else {
-                    key.next = q.next;
-                    key.val += q.val;
+                    ListNode result = this.addTwoNumbers(key,q);
+                    key.val = result.val;
+                    key.next = result.next;
                     q = null;
                 }
             }
@@ -106,10 +108,11 @@ public class LeetCode002 {
 
   public static void main(String[] args) {
         ListNode l1 = new ListNode(1);
-        l1.next = new ListNode(8);
-        ListNode l2 = new ListNode(0);
-        /*l2.next = new ListNode(6);
-        l2.next.next = new ListNode(4);*/
+        /*l1.next = new ListNode(4);
+        l1.next.next = new ListNode(3);*/
+        ListNode l2 = new ListNode(9);
+        l2.next = new ListNode(9);
+        //l2.next.next = new ListNode(4);
 
       ListNode returnNode = new LeetCode002().addTwoNumbers(l1,l2);
       ListNode key = returnNode;
